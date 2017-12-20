@@ -5,7 +5,7 @@
 
 # How to configure a CI/CD pipeline for the <project-name> on OpenShift
 
-- Create a project to house the Jenkins instance that will be responsible for promoting application images (via OpenShift ImageStreamTags) across environment; the exact project name used was "<project-name>-tools".
+- Create a project to house the Jenkins instance that will be responsible for promoting application images (via OpenShift ImageStreamTags) across environment; the exact project name used was "{project-name}-tools".
 - Create the BuildConfiguration within this project using the ```oc``` command and "<project-name>-build.json" file:
 
 ```
