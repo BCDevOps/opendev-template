@@ -1,7 +1,7 @@
 # OpenShift configuration files
 
-* deployment config
-* build config
+* deployment config .  (Example: https://github.com/bcgov/angular-scaffold/blob/master/openshift/templates/angular-on-nginx/angular-on-nginx-deploy.json)
+* build config (Example: https://github.com/bcgov/angular-scaffold/blob/master/openshift/templates/angular-on-nginx/angular-on-nginx-build.json)
 
 # How to configure a CI/CD pipeline for the <project-name> on OpenShift
 
