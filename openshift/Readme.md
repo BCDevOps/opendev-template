@@ -6,33 +6,33 @@
 # How to configure a CI/CD pipeline for the <project-name> on OpenShift
 
 - Create a project to house the Jenkins instance that will be responsible for promoting application images (via OpenShift ImageStreamTags) across environment; the exact project name used was "{project-name}-tools".
-- Create the BuildConfiguration within this project using the ```oc``` command and "<project-name>-build.json" file:
+- Create the BuildConfiguration within this project using the ```oc``` command and "{project-name}-build.json" file:
 
 ```
-oc process -f <project-name>-build.json | oc create -f -
+oc process -f {project-name}-build.json | oc create -f -
 ```
 
-This build config is in the openshift namespace as it uses the <base-image-name> S2I strategy.
+This build config is in the openshift namespace as it uses the {base-image-name} S2I strategy.
 
 
-- Deploy a Jenkins instance with persistent storage into the tools project (mem-tfrs-tools) using the web gui
-- Create an OpenShift project for each "environment" (e.g. DEV, TEST, PROD); Exact names used were <project-name>-dev, <project-name>-test, <project-name>-prod
+- Deploy a Jenkins instance with persistent storage into the tools project ({project-name}-tools) using the web gui
+- Create an OpenShift project for each "environment" (e.g. DEV, TEST, PROD); 
+  Exact names used were {project-name}-dev, {project-name}-test, {project-name}-prod
 - Configure the access controls to allow the Jenkins instance to tag imagestreams in the environment projects, and to allow the environment projects to pull images from the tools project:
  
 ```
-oc policy add-role-to-user system:image-puller system:serviceaccount:<project-name>-dev:default -n <project-name>-tools
-oc policy add-role-to-user edit system:serviceaccount:<project-name>-tools:default -n <project-name>-dev
+oc policy add-role-to-user system:image-puller system:serviceaccount:{project-name}-dev:default -n {project-name}-tools
+oc policy add-role-to-user edit system:serviceaccount:{project-name}-tools:default -n {project-name}-dev
 
-oc policy add-role-to-user system:image-puller system:serviceaccount:<project-name>-test:default -n <project-name>-tools
-oc policy add-role-to-user edit system:serviceaccount:<project-name>-tools:default -n <project-name>-test
+oc policy add-role-to-user system:image-puller system:serviceaccount:{project-name}-test:default -n {project-name}-tools
+oc policy add-role-to-user edit system:serviceaccount:{project-name}-tools:default -n {project-name}-test
 
-oc policy add-role-to-user system:image-puller system:serviceaccount:<project-name>-prod:default -n <project-name>-tools
-oc policy add-role-to-user edit system:serviceaccount:<project-name>-tools:default -n <project-name>-prod
+oc policy add-role-to-user system:image-puller system:serviceaccount:{project-name}-prod:default -n {project-name}-tools
+oc policy add-role-to-user edit system:serviceaccount:{project-name}-tools:default -n {project-name}-prod
 ```
 
-
 In the GitHub repository go to Settings > Webhooks > Add webhook
-Create a webhook for the push event only to Payload URL:  https://jenkins-<project-name>-tools.pathfinder.gov.bc.ca/github-webhook/
+Create a webhook for the push event only to Payload URL:  https://jenkins-{project-name}-tools.pathfinder.gov.bc.ca/github-webhook/
 Content type: application/json
 
 Create the deploy configuration
@@ -48,7 +48,7 @@ The deployment config uses the <project-name>-tools namespace since that is wher
 
 # How to access Jenkins
 
-- Login to https://jenkins-<project-name>-tools.pathfinder.gov.bc.ca.
+- Login to https://jenkins-{project-name}-tools.pathfinder.gov.bc.ca.
 
 # How to access OpenShift
 
