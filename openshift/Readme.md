@@ -3,6 +3,13 @@
 * deployment config .  (Example: https://github.com/bcgov/angular-scaffold/blob/master/openshift/templates/angular-on-nginx/angular-on-nginx-deploy.json)
 * build config (Example: https://github.com/bcgov/angular-scaffold/blob/master/openshift/templates/angular-on-nginx/angular-on-nginx-build.json)
 
+# Using Shell cripts to setup your environment
+Checkout: https://github.com/BCDevOps/openshift-project-tools.git
+Add following to your PATH: 
+* openshift-project-tools/bin
+
+
+
 # How to configure a CI/CD pipeline for the <project-name> on OpenShift
 
 - Create a project to house the Jenkins instance that will be responsible for promoting application images (via OpenShift ImageStreamTags) across environment; the exact project name used was "{project-name}-tools".
