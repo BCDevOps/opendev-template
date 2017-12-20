@@ -31,8 +31,12 @@ oc policy add-role-to-user system:image-puller system:serviceaccount:{project-na
 oc policy add-role-to-user edit system:serviceaccount:{project-name}-tools:default -n {project-name}-prod
 ```
 
+https://console.pathfinder.gov.bc.ca:8443/console/project/<project-name>-tools/browse/builds/<build-name>?tab=configuration
+displays the webhook urls. Copy the GitHub one. 
+https://console.pathfinder.gov.bc.ca:8443/oapi/v1/namespaces/devex-platform-tools/buildconfigs/devxp/webhooks/github
+
 In the GitHub repository go to Settings > Webhooks > Add webhook
-Create a webhook for the push event only to Payload URL:  https://jenkins-{project-name}-tools.pathfinder.gov.bc.ca/github-webhook/
+Create a webhook for the push event only to Payload URL.
 Content type: application/json
 
 Create the deploy configuration
