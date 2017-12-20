@@ -1,5 +1,7 @@
 # OpenShift configuration files
 
-See https://github.com/BCDevOps/openshift-templates
+See 
+
+* https://github.com/BCDevOps/BCDevOps-Guide
 
 # OpenShift Configuration/Setup
