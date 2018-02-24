@@ -1,5 +1,5 @@
 
-[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://github.com/BCDevOps/opendev-template/blob/master/LICENSE)
+[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](LICENSE)
 
 
 # Application Name
