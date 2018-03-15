@@ -7,11 +7,11 @@ Description of the application.
 
 ## Technology Stack Used
 
-## Third-Party Products/Libraries used and the the License they are covert by
+## Third-Party Products/Libraries used and the License they are covert by
 
 ## Project Status
 
-## Documnentation
+## Documentation
 
 GitHub Pages (https://guides.github.com/features/pages/) are a neat way to document you application/project.
 
