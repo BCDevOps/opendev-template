@@ -122,7 +122,9 @@ node('maven') {
 
 // Part 2 - Security scan of deployed app in dev
 
-podTemplate(label: 'owasp-zap', name: 'owasp-zap', serviceAccount: 'jenkins', cloud: 'openshift', containers: [
+// ensure pod labels/names are unique
+def zappodlabel = "myapp-zap-${UUID.randomUUID().toString()}"
+podTemplate(label: zappodlabel, name: zappodlabel, serviceAccount: 'jenkins', cloud: 'openshift', containers: [
   containerTemplate(
     name: 'jnlp',
     image: '172.50.0.2:5000/openshift/jenkins-slave-zap',
@@ -136,7 +138,7 @@ podTemplate(label: 'owasp-zap', name: 'owasp-zap', serviceAccount: 'jenkins', cl
   )
 ]) {
      stage('ZAP Security Scan') {
-        node('owasp-zap') {
+        node(zappodlabel) {
           sleep 60
           def retVal = sh returnStatus: true, script: '/zap/zap-baseline.py -r baseline.html -t http://myapp-dev.pathfinder.gov.bc.ca/'
           publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: '/zap/wrk', reportFiles: 'baseline.html', reportName: 'ZAP Baseline Scan', reportTitles: 'ZAP Baseline Scan'])
@@ -148,7 +150,9 @@ podTemplate(label: 'owasp-zap', name: 'owasp-zap', serviceAccount: 'jenkins', cl
 // Part 3 - BDD Testing 
 
 stage('Functional Test Dev') {
-  podTemplate(label: 'bddstack', name: 'bddstack', serviceAccount: 'jenkins', cloud: 'openshift', containers: [
+  // ensure pod labels/names are unique
+  def bddpodlabel = "myapp-bdd-${UUID.randomUUID().toString()}"	
+  podTemplate(label: bddpodlabel, name: bddpodlabel, serviceAccount: 'jenkins', cloud: 'openshift', containers: [
     containerTemplate(
       name: 'jnlp',
       image: '172.50.0.2:5000/openshift/jenkins-slave-bddstack',
@@ -164,7 +168,7 @@ stage('Functional Test Dev') {
       ]
     )
   ]) {
-    node('bddstack') {
+    node(bddpodlabel) {
       //the checkout is mandatory, otherwise functional test would fail
       echo "checking out source"
       checkout scm
