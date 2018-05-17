@@ -1,3 +1,9 @@
+//JENKINS DEPLOY ENVIRONMENT VARIABLES:
+// - JENKINS_JAVA_OVERRIDES  -Dhudson.model.DirectoryBrowserSupport.CSP= -Duser.timezone=America/Vancouver
+//   -> user.timezone : set the local timezone so logfiles report correxct time
+//   -> hudson.model.DirectoryBrowserSupport.CSP : removes restrictions on CSS file load, thus html pages of test reports are displayed pretty
+// - SLACK_TOKEN
+
 // define constants
 def BUILDCFG_NAME ='myapp'
 def IMAGE_NAME = 'myapp'
