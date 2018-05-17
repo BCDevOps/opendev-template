@@ -152,22 +152,26 @@ podTemplate(label: zappodlabel, name: zappodlabel, serviceAccount: 'jenkins', cl
 stage('Functional Test Dev') {
   // ensure pod labels/names are unique
   def bddpodlabel = "myapp-bdd-${UUID.randomUUID().toString()}"	
-  podTemplate(label: bddpodlabel, name: bddpodlabel, serviceAccount: 'jenkins', cloud: 'openshift', containers: [
-    containerTemplate(
-      name: 'jnlp',
-      image: '172.50.0.2:5000/openshift/jenkins-slave-bddstack',
-      resourceRequestCpu: '500m',
-      resourceLimitCpu: '1000m',
-      resourceRequestMemory: '1Gi',
-      resourceLimitMemory: '4Gi',
-      workingDir: '/home/jenkins',
-      command: '',
-      args: '${computer.jnlpmac} ${computer.name}',
-      envVars: [
-        envVar(key:'BASEURL', value: 'http://myapp-dev.pathfinder.gov.bc.ca/')
-      ]
-    )
-  ]) {
+  podTemplate(label: bddpodlabel, name: bddpodlabel, serviceAccount: 'jenkins', cloud: 'openshift', 
+    volumes: [
+	    emptyDirVolume(mountPath:'/dev/shm', memory: true)
+    ],
+    containers: [
+      containerTemplate(
+        name: 'jnlp',
+        image: '172.50.0.2:5000/openshift/jenkins-slave-bddstack',
+        resourceRequestCpu: '500m',
+        resourceLimitCpu: '1000m',
+        resourceRequestMemory: '1Gi',
+        resourceLimitMemory: '4Gi',
+        workingDir: '/home/jenkins',
+        command: '',
+        args: '${computer.jnlpmac} ${computer.name}',
+        envVars: [
+          envVar(key:'BASEURL', value: 'http://myapp-dev.pathfinder.gov.bc.ca/')
+        ]
+      )]
+  ) {
     node(bddpodlabel) {
       //the checkout is mandatory, otherwise functional test would fail
       echo "checking out source"
