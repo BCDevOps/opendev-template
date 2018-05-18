@@ -1,3 +1,19 @@
+//
+// Copyright © 2018 Province of British Columbia
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+// http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+//
+
 //JENKINS DEPLOY ENVIRONMENT VARIABLES:
 // - JENKINS_JAVA_OVERRIDES  -Dhudson.model.DirectoryBrowserSupport.CSP= -Duser.timezone=America/Vancouver
 //   -> user.timezone : set the local timezone so logfiles report correxct time
@@ -123,7 +139,13 @@ node('maven') {
             sleep 5
 	    openshiftVerifyDeployment depCfg: DEV_DEPLOYMENT_NAME, namespace: DEV_NS, replicaCount: 1, verbose: 'false', verifyReplicaCount: 'false'
 	    echo ">>>> Deployment Complete"
-	    notifySlack("Dev Deploy, changes:\n" + getChangeString(), "#builds", "https://hooks.slack.com/services/${SLACK_TOKEN}", [])
+	    // send msg to slack
+	    def attachment = [:]
+            attachment.fallback = 'See build log for more details'
+            attachment.title = "Build ${BUILD_ID} OK! :heart: :tada:"
+            attachment.color = '#00FF00' // Lime Green
+            attachment.text = "Changes applied:\n" + getChangeString() + "\nCommit ${GIT_COMMIT_SHORT_HASH} by ${GIT_COMMIT_AUTHOR}"
+	    notifySlack("Dev Deploy", "#builds", "https://hooks.slack.com/services/${SLACK_TOKEN}", attachment)
     }
 }
 
