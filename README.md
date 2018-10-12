@@ -7,11 +7,11 @@ Description of the application.
 
 ## Technology Stack Used
 
-## Third-Party Products/Libraries used and the the License they are covert by
+## Third-Party Products/Libraries used and the licenses they are covered by
 
 ## Project Status
 
-## Documnentation
+## Documentation
 
 GitHub Pages (https://guides.github.com/features/pages/) are a neat way to document you application/project.
 
@@ -53,7 +53,7 @@ By participating in this project you agree to abide by its terms.
 
 ## License
 
-    Copyright 2016 Province of British Columbia
+    Copyright 2018 Province of British Columbia
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
