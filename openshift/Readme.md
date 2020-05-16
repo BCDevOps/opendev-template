@@ -1,9 +1,9 @@
 # OpenShift configuration files
 
-* deployment config .  (Example: https://github.com/bcgov/angular-scaffold/blob/master/openshift/templates/angular-on-nginx/angular-on-nginx-deploy.json)
+* deployment config (Example: https://github.com/bcgov/angular-scaffold/blob/master/openshift/templates/angular-on-nginx/angular-on-nginx-deploy.json)
 * build config (Example: https://github.com/bcgov/angular-scaffold/blob/master/openshift/templates/angular-on-nginx/angular-on-nginx-build.json)
 
-# Using Shell cripts to setup your environment
+# Using Shell scripts to setup your environment
 Checkout: https://github.com/BCDevOps/openshift-project-tools.git
 Add following to your PATH: 
 * openshift-project-tools/bin
@@ -69,19 +69,19 @@ The deployment config uses the <project-name>-tools namespace since that is wher
 ## Command-line (```oc```) tools
 - Download OpenShift [command line tools](https://github.com/openshift/origin/releases/download/v1.2.1/openshift-origin-client-tools-v1.2.1-5e723f6-mac.zip), unzip, and add ```oc``` to your PATH.  
 - Copy command line login string from https://console.pathfinder.gov.bc.ca:8443/console/command-line.  It will look like ```oc login https://console.pathfinder.gov.bc.ca:8443 --token=xtyz123xtyz123xtyz123xtyz123```
-- Paste the login string into a terminal session.  You are now authenticated against OpenShift and will be able to execute ```oc``` commands. ```oc -h``` provides a summary of available commands.
+- Paste the login string into a terminal session.  You are now authenticated against OpenShift and will be able to execute ```oc```  commands. ```oc -h``` provides a summary of available commands.
 
 
 
 # Background reading/Resources
 
-[Pathfiner Site](https://www.pathfinder.gov.bc.ca/)
+[Pathfinder Site](https://www.pathfinder.gov.bc.ca/)
 
 [Free OpenShift book](https://www.openshift.com/promotions/for-developers.html) from RedHat – good overview
 
 [Red Hat Container Development Kit](http://developers.redhat.com/products/cdk/overview/)
 
-# OpenShift CI/CD pieline Demos:
+# OpenShift CI/CD pipeline Demos:
 
 - https://www.youtube.com/watch?v=65BnTLcDAJI
 - https://www.youtube.com/watch?v=wSFyg6Etwx8
